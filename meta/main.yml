@@ -31,8 +31,8 @@ galaxy_info:
       - 7
   - name: SLES
     versions:
-      - 12SP5
-      - 15SP2
+      - 12SP4
+      - 15SP1
   galaxy_tags: [ kvm, libvirt, user ]
 
 dependencies: []
