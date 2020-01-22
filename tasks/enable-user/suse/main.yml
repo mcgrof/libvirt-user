@@ -1,6 +1,8 @@
 ---
 # enables a user to run libvirt/kvm without being root
 - name: Adds the user to the respective distro libvirt groups
+  become: yes
+  become_method: sudo
   user:
     name: "{{ ansible_user }}"
     groups: libvirt,kvm,qemu
