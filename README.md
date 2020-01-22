@@ -38,7 +38,7 @@ Below is an example playbook, say a bootlinux.yml file:
 
 ```
 ---
-- hosts: all
+- hosts: localhost
   roles:
     - role: mcgrof.libvirt-user
 ```
