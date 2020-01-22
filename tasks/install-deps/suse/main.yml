@@ -1,0 +1,10 @@
+---
+- name: Install libvirt / kvm dependencies
+  zypper:
+    name:
+      - libvirt
+      - libvirt-daemon
+      - qemu
+      - qemu-kvm
+      - qemu-x86
+    state: present

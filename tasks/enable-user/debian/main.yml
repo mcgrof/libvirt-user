@@ -1,0 +1,6 @@
+---
+# enables a user to run libvirt/kvm without being root
+- name: Adds the user to the respective distro libvirt groups
+  user:
+    name: "{{ ansible_user }}"
+    groups: libvirt,kvm,libvirt-qemu

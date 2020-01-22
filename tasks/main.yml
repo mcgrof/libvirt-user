@@ -1,0 +1,7 @@
+---
+# Distro specific
+- name: Install libvirt and other dependencies
+  include_tasks: install-deps/main.yml
+
+- name: Enables user to run libvirt guests
+  include_tasks: enable-user/main.yml
