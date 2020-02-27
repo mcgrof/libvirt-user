@@ -24,7 +24,7 @@ Run a supported OS/distribution:
 Role Variables
 --------------
 
-None.
+  * only_verify_user: set to True
 
 Dependencies
 ------------
@@ -41,6 +41,20 @@ Below is an example playbook, say a bootlinux.yml file:
 - hosts: localhost
   roles:
     - role: mcgrof.libvirt-user
+```
+
+But you want to run this twice, once with the default `only_verify_user` set to
+False and then with `only_verify_user` set to True, the last would be a check
+to ensure we inform the user to log out and back in so that the group changes
+take effect So for instance you would have:
+
+```bash
+# Does the actual work
+ansible-playbook -i hosts playbooks/libvirt_user.yml
+
+# Verify if the changes are already effective if not warn the user to log
+# out and back in.
+ansible-playbook -i hosts playbooks/libvirt_user.yml -e "{only_verify_user:true}
 ```
 
 License

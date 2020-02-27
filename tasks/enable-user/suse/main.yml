@@ -1,5 +1,4 @@
 ---
-# enables a user to run libvirt/kvm without being root
 - name: Adds the user to the respective distro libvirt groups
   become: yes
   become_method: sudo
@@ -7,3 +6,24 @@
     name: "{{ ansible_user }}"
     groups: libvirt,kvm,qemu
     append: yes
+  when: 'not only_verify_user|bool'
+
+- name: Verifies user is able to run libvirt/kvm without being root
+  shell: groups | grep {{ item }}
+  with_items:
+    - libvirt
+    - kvm
+    - qemu
+  label: "Verifying if user's current effective groups includes {{ item }}"
+  register: group_check
+  # grep will exit with 1 when no results found.
+  # This causes the task not to halt play.
+  ignore_errors: true
+  when: 'only_verify_user|bool'
+
+- name: Inform if user must log out and back in
+  fail:
+    msg: User group settings are not in effect, log out and back in
+  when:
+    - 'only_verify_user|bool'
+    - 'group_check|failed'
