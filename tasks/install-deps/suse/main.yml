@@ -10,3 +10,10 @@
       - qemu-kvm
       - qemu-x86
     state: present
+
+- name: Make sure libvirtd is running
+  become: yes
+  become_method: sudo
+  systemd:
+    state: started
+    name: libvirtd

@@ -19,3 +19,10 @@
       - qemu-utils
     state: present
   tags: install
+
+- name: Make sure libvirtd is running
+  become: yes
+  become_method: sudo
+  systemd:
+    state: started
+    name: libvirtd
