@@ -6,3 +6,4 @@
   user:
     name: "{{ ansible_user }}"
     groups: libvirt,kvm,libvirt-qemu
+    append: yes
