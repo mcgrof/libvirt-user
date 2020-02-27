@@ -54,7 +54,7 @@ ansible-playbook -i hosts playbooks/libvirt_user.yml
 
 # Verify if the changes are already effective if not warn the user to log
 # out and back in.
-ansible-playbook -i hosts playbooks/libvirt_user.yml -e "{only_verify_user:true}
+ansible-playbook -i hosts playbooks/libvirt_user.yml -e "only_verify_user=True"
 ```
 
 License
