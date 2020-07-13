@@ -32,4 +32,3 @@
   with_items: "{{ group_check.results }}"
   loop_control:
     label: "Ensure if user's current effective groups includes {{ item.item }}"
-  when: 'only_verify_user|bool'
