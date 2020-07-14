@@ -24,7 +24,11 @@ Run a supported OS/distribution:
 Role Variables
 --------------
 
-  * only_verify_user: set to True
+  * only_verify_user: set to False by default. This will ensure that we do the
+    handy work to do what is needed to enable your user to run libvirt as a
+    regular user. Typical recommended use of this ansible role is to run
+    with the default of this set to False, and then a second time with this set
+    to True to verify if you need to log out and back in.
 
 Dependencies
 ------------
