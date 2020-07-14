@@ -61,6 +61,40 @@ ansible-playbook -i hosts playbooks/libvirt_user.yml
 ansible-playbook -i hosts playbooks/libvirt_user.yml -e "only_verify_user=True"
 ```
 
+## Running libvirt as a regular user
+
+This documents the logic used by this ansible role to let a regular user run
+libvirt.
+
+vagrant can be used to call libvirt without requiring root privileges. To do
+this this ansible role ensures the user which runs vagrant is part of the
+following groups:
+
+  * kvm
+  * libvirt
+  * qemu on Fedora / libvirt-qemu on Debian
+
+Debian has its own set of instructions on
+[https://wiki.debian.org/KVM#Connecting_locally_to_libvirt_as_regular_user](connecting locally to libvirt as a regular user).
+Debian uses libvirt-qemu as the userid which runs qemu, Fedora uses qemu.
+The qcow2 files created are ensured to allow the default user qemu executes
+under by letting the qemu user group to write to them as well. We have the
+defaults for debian on this project, to override the default group to use for
+qemu set the value need on the environment variable:
+
+  * ``${PN_U}_VAGRANT_QEMU_GROUP``
+
+You can override the default user qemu will run by modifying
+`/etc/libvirt/qemu.conf' user and group settings there.
+
+## Vagrant with apparmor and selinux
+
+If on a system with apparmor or selinux enabled, there may be more work
+required on your part. The easiest solution is to disable it if you can
+afford it.
+
+XXX: add a task to do this for users.
+
 License
 -------
 
