@@ -27,8 +27,8 @@
     msg: "User group settings are not in effect, you must log out and back in to make group {{ item.item }} be part of your effective group"
   failed_when: item.rc is undefined or item.rc != 0
   when:
-    - 'item.rc != 0'
     - 'only_verify_user|bool'
+    - 'item.rc != 0'
   loop: "{{ group_check.results }}"
   loop_control:
     label: "Ensure if user's current effective groups includes {{ item.item }}"
