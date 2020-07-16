@@ -29,6 +29,6 @@
   when:
     - 'item.rc != 0'
     - 'only_verify_user|bool'
-  with_items: "{{ group_check.results }}"
+  loop: "{{ group_check.results }}"
   loop_control:
     label: "Ensure if user's current effective groups includes {{ item.item }}"
