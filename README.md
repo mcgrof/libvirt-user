@@ -24,6 +24,17 @@ Run a supported OS/distribution:
 Role Variables
 --------------
 
+  * skip_install: set this to true if you want to skip installation, this is
+    set to False by default
+  * skip_configuration: set this to true if you want to skip configuration,
+    this is set to False by default. Configuration consists of adding the
+    user to the respective libvirt groups and verifying that the user is
+    effective. Typically we need two runs when configuring, one to add the
+    user the required groups, and a second time to verify the user's group
+    changes are in effect.
+
+  * only_install: set this to true if you only want to install libvirt. By
+    default this is set to False.
   * only_verify_user: set to False by default. This will ensure that we do the
     handy work to do what is needed to enable your user to run libvirt as a
     regular user. Typical recommended use of this ansible role is to run
